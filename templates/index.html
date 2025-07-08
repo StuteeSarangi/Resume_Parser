@@ -1,0 +1,135 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Resume Upload</title>
+  <style>
+    body {
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      background: linear-gradient(135deg, #fcd3e1, #fcb1d4);
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .upload-box {
+      background: white;
+      padding: 40px 30px;
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(255, 105, 180, 0.2);
+      text-align: center;
+      width: 90%;
+      max-width: 450px;
+    }
+
+    h2 {
+      color: #d63384;
+      margin-bottom: 25px;
+    }
+
+    .drop-zone {
+      position: relative;
+      border: 2px dashed #ff99cc;
+      border-radius: 15px;
+      padding: 40px 20px;
+      background: #fff5f9;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .drop-zone:hover {
+      background-color: #ffe6f0;
+    }
+
+    .drop-zone.dragover {
+      background-color: #ffe6f0;
+      border-color: #d63384;
+    }
+
+    .drop-zone input {
+      display: none;
+    }
+
+    .drop-message {
+      color: #d63384;
+      font-size: 15px;
+    }
+
+    #file-name {
+      margin-top: 15px;
+      font-size: 14px;
+      color: #555;
+    }
+
+    button {
+      margin-top: 25px;
+      padding: 10px 25px;
+      background: #ff69b4;
+      color: white;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background: #e75494;
+    }
+  </style>
+</head>
+<body>
+  <form class="upload-box" method="POST" action="/upload" enctype="multipart/form-data">
+    <h2>✨ Upload Your Resume ✨</h2>
+
+    <div class="drop-zone" id="drop-zone">
+      <span class="drop-message">Drag & Drop your resume here<br>or click to select</span>
+      <input type="file" name="resume" id="file-input" required>
+      <div id="file-name"></div>
+    </div>
+
+    <button type="submit">Parse Resume 💖</button>
+  </form>
+
+  <script>
+    const dropZone = document.getElementById("drop-zone");
+    const fileInput = document.getElementById("file-input");
+    const fileNameDisplay = document.getElementById("file-name");
+
+    // Click opens file dialog
+    dropZone.addEventListener("click", () => fileInput.click());
+
+    // File selected from dialog
+    fileInput.addEventListener("change", () => {
+      if (fileInput.files.length) {
+        fileNameDisplay.textContent = "📄 " + fileInput.files[0].name;
+      }
+    });
+
+    // Drag over
+    dropZone.addEventListener("dragover", e => {
+      e.preventDefault();
+      dropZone.classList.add("dragover");
+    });
+
+    dropZone.addEventListener("dragleave", () => {
+      dropZone.classList.remove("dragover");
+    });
+
+    // Drop file
+    dropZone.addEventListener("drop", e => {
+      e.preventDefault();
+      dropZone.classList.remove("dragover");
+
+      if (e.dataTransfer.files.length) {
+        fileInput.files = e.dataTransfer.files;
+        fileNameDisplay.textContent = "📄 " + e.dataTransfer.files[0].name;
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,123 @@
+<!-- templates/result.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Resume Result</title>
+  <style>
+    body {
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      background: linear-gradient(135deg, #fff0f5, #ffe4e1);
+      margin: 0;
+      padding: 0;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 50px auto;
+      background: white;
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 8px 30px rgba(255, 105, 180, 0.2);
+    }
+
+    h2 {
+      text-align: center;
+      color: #d63384;
+      margin-bottom: 30px;
+    }
+
+    .field {
+      margin-bottom: 20px;
+      animation: fadeSlide 0.4s ease;
+    }
+
+    .label {
+      font-weight: bold;
+      color: #ff69b4;
+      margin-bottom: 5px;
+      display: block;
+    }
+
+    .value {
+      font-size: 16px;
+      color: #444;
+      white-space: pre-line;
+      padding-left: 10px;
+    }
+
+    .back {
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    .back a {
+      text-decoration: none;
+      background: #ff69b4;
+      color: white;
+      padding: 10px 25px;
+      border-radius: 30px;
+      transition: background 0.3s ease;
+    }
+
+    .back a:hover {
+      background: #d63384;
+    }
+
+    @keyframes fadeSlide {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>🎀 Your Resume Looks Fabulous! 🎀</h2>
+
+    <div class="field">
+      <span class="label">👩 Full Name:</span>
+      <div class="value">{{ resume.full_name }}</div>
+    </div>
+
+    <div class="field">
+      <span class="label">📧 Email:</span>
+      <div class="value">{{ resume.email }}</div>
+    </div>
+
+    <div class="field">
+      <span class="label">📱 Phone:</span>
+      <div class="value">{{ resume.phone }}</div>
+    </div>
+
+    <div class="field">
+      <span class="label">🌐 Languages:</span>
+      <div class="value">{{ resume.languages }}</div>
+    </div>
+
+    <div class="field">
+      <span class="label">✨ Skills:</span>
+      <div class="value">{{ resume.skills }}</div>
+    </div>
+
+    <div class="field">
+      <span class="label">💼 Experience:</span>
+      <div class="value">{{ resume.experience }}</div>
+    </div>
+
+    <div class="field">
+      <span class="label">🎓 Education:</span>
+      <div class="value">{{ resume.education }}</div>
+    </div>
+
+    <div class="back">
+      <a href="/">← Try Another Resume</a>
+    </div>
+  </div>
+</body>
+</html>
